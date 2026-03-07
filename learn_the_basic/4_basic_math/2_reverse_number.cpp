@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cmath>
+
+using std::cin; using std::cout;
+
+// using log to get the number of digits and 
+// then using 10's power to define the place value
+
+// using pow function
+int reverse_num_1(int n)
+{
+	int digit = log10(n);
+	int rev_num = 0;
+
+	while (n != 0)
+	{
+		int r = (int) (n % 10) * pow(10, digit);
+		rev_num += r;
+		n /= 10;
+		digit--;
+	}
+
+	return rev_num;
+}
+
+// without power function
+int reverse_num_2(int n)
+{
+	int revNum = 0;
+
+	while (n > 0)
+	{
+		int lastDigit = n % 10;
+		revNum = revNum * 10 + lastDigit;
+		
+		n /= 10;
+	}
+
+	return revNum;
+}
+
+int main(void)
+{
+	int N;
+	cin >> N;
+
+	int rev_num = reverse_num_1(N);
+
+	cout << "The reverse of " << N << " is " << rev_num << '\n';
+	return 0;
+}
