@@ -7,39 +7,43 @@ class Solution {
 
 	void printNumber_1(int i, int n)
 	{
-		if (i > n) {
-			return;
-		}
-		cout << i << ' ';
-		printNumber_1(i+1,n);
-	}
-
-	// with backtracking
-	void printNumber_2(int i, int n)
-	{
 		if (i < 1) {
 			return;
 		}
-		printNumber_2(i-1, n);
+	
 		cout << i << ' ';
+		printNumber_1(i-1,n);
 	}
-
-	void printNumber_3(int i, int n)
+	
+	// with backtracking
+	void printNumber_2(int i, int n)
 	{
-		if (i > n)
+		if (i > n) {
 			return;
-		
-		printNumber_3(i+1, n);
+		}
+	
+		printNumber_2(i+1, n);
 		cout << i << ' ';
 	}
 	
-	void printNumber_4(int n)
+	void printNumber_3(int n)
 	{
 		if (n < 1) {
 			return;
 		}
-		printNumber_4(n-1);
+	
 		cout << n << ' ';
+		printNumber_3(n-1);
+	}
+
+	// with backtracking
+	void printNumber_4(int n)
+	{
+		if (n < 1)
+			return;
+		
+		printNumber_4(n-1);
+		cout << n << ' '; 
 	}
 };
 
@@ -49,11 +53,11 @@ int main(void)
 	cin >> n;
 
 	Solution sol;
-	sol.printNumber_1(1,n);
+	sol.printNumber_1(n, n);
 	cout << '\n';
-	sol.printNumber_2(n, n);
+	sol.printNumber_2(1, n);
 	cout << '\n';
-	sol.printNumber_3(1, n);
+	sol.printNumber_3(n);
 	cout << '\n';
 	sol.printNumber_4(n);
 
