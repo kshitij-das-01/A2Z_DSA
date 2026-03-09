@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <string>
 
 using std::cin; using std::cout;
 
@@ -39,19 +40,41 @@ int reverse_num_2(int n)
 	return revNum;
 }
 
+// storing number in another integer till it is smaller than the given, then comparing them if equal them it is a palindrome
+bool isPalindrome_1(int n)
+{
+	if (n < 0 || (n % 10 == 0 && n != 0))
+		return false;
+
+	int rev = 0;
+	
+	while (n > rev)
+	{
+		rev = (rev * 10) + (n % 10);
+		n /= 10;
+	}
+
+	return (n == rev || n == rev / 10);
+}
+
 int main(void)
 {
 	int N;
 	cin >> N;
 
-	int rev_num = reverse_num_1(N);
+	// int rev_num = reverse_num_1(N);
 
-	cout << "The reverse of " << N << " is " << rev_num;
+	// cout << "The reverse of " << N << " is " << rev_num;
 	
-	if (N == rev_num)
-		cout << " it is palindrome number\n";
+	// if (N == rev_num)
+	// 	cout << " it is palindrome number\n";
+	// else 
+	// 	cout << " it is not palindrome number\n";
+
+	if (isPalindrome_1(N))
+		cout << "Palindrome ";
 	else 
-		cout << " it is not palindrome number\n";
+		cout << "Not Palindrome ";
 	
 	return 0;
 }
