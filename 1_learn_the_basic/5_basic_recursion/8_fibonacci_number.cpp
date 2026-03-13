@@ -52,7 +52,10 @@ void fibonacci_4(vector<int> &fib, int n)
 
 	fibonacci_4(fib, n-1);
 	fibonacci_4(fib, n-2);
+
 	fib[n] = fib[n-1] + fib[n-2];
+	// not working
+	// fib.push_back(fib[n-1] + fib[n-2]);
 }
 
 int main(void)
@@ -83,7 +86,7 @@ int main(void)
 
 	// solution 4
 	cout << "Fibonacci 4: ";	
-	vector<int> res2(n+1);
+	vector<int> res2(n+1); 
 	fibonacci_4(res2, n);
 	for (int ls : res2) {
 		cout << ls << ' ';
