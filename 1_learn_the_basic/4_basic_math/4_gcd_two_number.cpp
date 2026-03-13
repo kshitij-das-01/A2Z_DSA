@@ -1,6 +1,6 @@
 #include <iostream>
 
-using std::cin; using std::cout;
+using std::cin; using std::cout; using std::vector;
 
 // iterating through each number from 1 to min(n1, n2) and updating the gcd through the loop
 int gcd_calculate_1(int n1, int n2)
@@ -90,49 +90,52 @@ int gcd_calculate_4(int n1, int n2)
 	if (n1 == 0)
 		return n2;
 	
-	return gcd_4(n2 % n1, n1);
+	return gcd_calculate_4(n2 % n1, n1);
 }
 
 // using vector to store factor and checking the max common factor
-int gcd_calculate_5(int n1, int n2)
+vector<int> factor(int n)
 {
-	std::vector<int> f1, f2;
-
-	for (int i = 1; i * i <= std::min(n1, n2); i++)
+	vector<int> fact;
+	for (int i = 1; i * i <= n; i++)
 	{
-		if (n1 % i == 0) {
-			f1.push_back(i);
+		if (n % i == 0) {
+			fact.push_back(i);
 
-			if (n1 / i != i)
-				f1.push_back(n1/i);
-		}
-
-		if (n2 % i == 0) {
-			f2.push_back(i);
-
-			if (n2 / i != i)
-				f2.push_back(n2/i);
+			if (n / i != i)
+				fact.push_back(n/i);
 		}
 	}
+	return fact;
+}
+
+int gcd_5(int n1, int n2)
+{
+	std::vector<int> f1, f2;
+	
+	f1 = factor(n1);
+	f2 = factor(n2);
 
 	std::sort(f1.begin(), f1.end());
 	std::sort(f2.begin(), f2.end());
-
-	// for (int ls : f1)
-	// 	cout << ls << ' ';
-	// cout << '\n';	
-
-	// for (int ls : f2)
-	// 	cout << ls << ' ';
-	// cout << '\n';	
 	
-	int gcd;
+	// for (auto it : f1)
+	// 	cout << it << " ";
+	// cout << '\n';
+	// for (auto it : f2)
+	// 	cout << it << " ";
+	// cout << '\n';
+
 	int i = f1.size() - 1, j = f2.size() - 1;
 
-	while (i > 0 && j > 0)
+	int gcd;
+	while (i >= 0 && j >= 0)
 	{
-		if (f1[i] == f2[j])
+
+		if (f1[i] == f2[j]) {
 			gcd = f1[i];
+			break;
+		}
 
 		if (f1[i] > f2[j])
 			i--;
@@ -142,7 +145,6 @@ int gcd_calculate_5(int n1, int n2)
 
 	return gcd;
 }
-
 
 int main(void)
 {
