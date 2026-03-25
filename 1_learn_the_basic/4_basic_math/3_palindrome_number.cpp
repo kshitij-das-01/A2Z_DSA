@@ -40,6 +40,7 @@ int reverse_num_2(int n)
 	return revNum;
 }
 
+// Leet code specific approach below
 // storing number in another integer till it is smaller than the given, then comparing them if equal them it is a palindrome
 bool isPalindrome_1(int n)
 {
@@ -55,6 +56,30 @@ bool isPalindrome_1(int n)
 	}
 
 	return (n == rev || n == rev / 10);
+}
+// two pointer with vector store int
+bool isPalindrome_1(int x) {
+	if (x < 0 || (x % 10 == 0 && x != 0)) {
+		return false;
+	}
+
+	std::vector<int> num;
+	while (x > 0) {
+		num.push_back(x % 10);
+		x /= 10;
+	}
+
+	int i = 0, j = num.size() - 1;
+	while (i < j)
+	{
+		if (num[i] != num[j]) {
+			return false;
+		}
+		i++;
+		j--;
+	}
+
+	return true;
 }
 
 int main(void)
