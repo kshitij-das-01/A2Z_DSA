@@ -47,4 +47,22 @@ public:
 
         return true;
     }
+
+// converting the number to string approach
+    bool isPalindrome_2(int x) {
+
+        if (x < 0 || (x % 10 == 0 && x != 0)) return false;
+
+        string s = to_string(x);
+        int len = s.length();
+
+        for (int i = 0; i < len; i++)
+        {
+            if (s[i] != s[len-i-1]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 };
