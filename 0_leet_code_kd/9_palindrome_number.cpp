@@ -23,7 +23,7 @@ public:
         else return false;
     }
 
-    // two pointer with vector store int
+// two pointer with vector store int
     bool isPalindrome_1(int x) {
         if (x < 0 || (x % 10 == 0 && x != 0)) {
             return false;
