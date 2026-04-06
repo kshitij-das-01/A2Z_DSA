@@ -6,25 +6,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Solution 1
 class Solution {
 public:
     bool isPalindrome(int x) {
         if (x < 0 || (x % 10 == 0 && x != 0))
-            return 0;
-            
+            return false;
+
         int rev = 0;
+
         while (x > rev)
         {
             rev = (rev * 10) + (x % 10);
             x /= 10;
-        }                
+        }
 
-        if (rev == x || x == rev / 10) return true;
-        else return false;
+        if (x == rev || x == rev/10) 
+            return true;
+        else 
+            return false;
     }
+};
 
-// two pointer with vector store int
-    bool isPalindrome_1(int x) {
+// Solution 2
+class Solution {
+public:
+    bool isPalindrome(int x) {
         if (x < 0 || (x % 10 == 0 && x != 0)) {
             return false;
         }
@@ -44,12 +51,15 @@ public:
             i++;
             j--;
         }
-
         return true;
     }
+};
 
+// Solution 3
+class Solution {
+public:
 // converting the number to string approach
-    bool isPalindrome_2(int x) {
+    bool isPalindrome(int x) {
 
         if (x < 0 || (x % 10 == 0 && x != 0)) return false;
 
